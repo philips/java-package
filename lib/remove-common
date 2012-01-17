@@ -1,0 +1,19 @@
+    # Common functions for all install scripts
+
+    # remove_alternative -- remove an alternative
+    #
+    # remove_alternative program
+    function remove_alternative() {
+        local program="$1"
+        update-alternatives \
+            --remove "$program" "/usr/bin/$program-$suffix"
+        rm "/usr/bin/$program-$suffix"
+    }
+
+    # remove_java_plugin -- add an alternative for a browser plugin
+    #
+    # remove_java_plugin plugins_path
+    function remove_java_plugin() {
+        update-alternatives \
+            --remove "firefox-javaplugin.so" "$plugin_dir/libjavaplugin_oji.so"
+    }
